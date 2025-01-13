@@ -1,0 +1,41 @@
+// Copyright 2025 Noblon GmbH. All Rights Reserved.
+
+#pragma once
+
+#include "NativeGameplayTags.h"
+
+namespace NLGameplayTags
+{
+	WOPGAME_API	FGameplayTag FindTagByString(const FString& TagString, bool bMatchPartialString = false);
+
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_IsEliminated);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_Cooldown);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_Cost);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_TagsBlocked);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_TagsMissing);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_Networking);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_ActivateFail_ActivationGroup);
+
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(Ability_Behavior_SurvivesElimination);
+
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Move);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Look_Mouse);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InputTag_Look_Stick);
+
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InitState_Spawned);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InitState_DataAvailable);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InitState_DataInitialized);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(InitState_GameplayReady);
+
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameplayEvent_Elimination);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameplayEvent_Reset);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(GameplayEvent_RequestReset);
+
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(SetByCaller_Damage);
+	WOPGAME_API	UE_DECLARE_GAMEPLAY_TAG_EXTERN(SetByCaller_Heal);
+
+	WOPGAME_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Elimination);
+	WOPGAME_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Elimination_BeingEliminated);
+	WOPGAME_API UE_DECLARE_GAMEPLAY_TAG_EXTERN(Status_Elimination_Eliminated);
+
+};
