@@ -13,6 +13,7 @@ class APlayerState;
 class IInputInterface;
 class UNLSettingsShared;
 class UNLAbilitySystemComponent;
+class UNLGameplayItemManagerComponent;
 
 /**
  * ANLPlayerController
@@ -76,6 +77,9 @@ public:
 	UFUNCTION(BlueprintNativeEvent, Category = "NL|PlayerController")
 	FVector2D GetMovementInputScaleValue(const FVector2D InValue) const;
 	virtual FVector2D GetMovementInputScaleValue_Implementation(const FVector2D InValue) const;
+
+	UPROPERTY()
+	TObjectPtr<UNLGameplayItemManagerComponent> GameplayItemManagerComponent;
 
 private:
 	UPROPERTY()

@@ -18,6 +18,7 @@ class UInputComponent;
 class UNLAbilitySystemComponent;
 class UNLPawnExtensionComponent;
 class UNLHealthComponent;
+class UNLApplicableGameplayItemManagerComponent;
 struct FGameplayTag;
 struct FGameplayTagContainer;
 
@@ -127,6 +128,9 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NL|Character", Meta = (AllowPrivateAccess = "true"))
 	TObjectPtr<UNLHealthComponent> HealthComponent;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "NL|Character", Meta = (AllowPrivateAccess = "true"))
+	TObjectPtr<UNLApplicableGameplayItemManagerComponent> ApplicableGameplayItemManagerComponent;
 
 	UPROPERTY(Transient, ReplicatedUsing = OnRep_ReplicatedAcceleration)
 	FNLReplicatedAcceleration ReplicatedAcceleration;

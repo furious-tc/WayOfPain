@@ -5,6 +5,7 @@
 #include "Pawns/NLCharacterMovementComponent.h"
 #include "Pawns/NLPawnExtensionComponent.h"
 #include "Pawns/NLHealthComponent.h"
+#include "Gameplay/NLApplicableGameplayItemManagerComponent.h"
 #include "Components/CapsuleComponent.h"
 #include "Components/SkeletalMeshComponent.h"
 #include "NLGameplayTags.h"
@@ -34,6 +35,8 @@ ANLCharacter::ANLCharacter(const FObjectInitializer& ObjectInitializer)
 	HealthComponent = CreateDefaultSubobject<UNLHealthComponent>(TEXT("HealthComponent"));
 	HealthComponent->OnEliminationStarted.AddDynamic(this, &ThisClass::OnEliminationStarted);
 	HealthComponent->OnEliminationFinished.AddDynamic(this, &ThisClass::OnEliminationFinished);
+
+	ApplicableGameplayItemManagerComponent = CreateDefaultSubobject<UNLApplicableGameplayItemManagerComponent>(TEXT("ApplicableGameplayItemManagerComponent"));
 }
 
 void ANLCharacter::PreInitializeComponents()

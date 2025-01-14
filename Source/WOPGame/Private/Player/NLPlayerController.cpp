@@ -6,6 +6,7 @@
 #include "Player/NLLocalPlayer.h"
 #include "UI/NLHUD.h"
 #include "Abilities/NLAbilitySystemComponent.h"
+#include "Gameplay/NLGameplayItemManagerComponent.h"
 #include "EngineUtils.h"
 #include "NLGameplayTags.h"
 #include "GameFramework/Pawn.h"
@@ -32,6 +33,7 @@ namespace NL
 ANLPlayerController::ANLPlayerController(const FObjectInitializer& ObjectInitializer)
 	: Super()
 {
+	GameplayItemManagerComponent = CreateDefaultSubobject<UNLGameplayItemManagerComponent>(TEXT("GameplayItemManagerComponent"));
 }
 
 void ANLPlayerController::PreInitializeComponents()
