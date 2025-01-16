@@ -94,7 +94,7 @@ void UNLAbilitySet::GiveToAbilitySystem(UNLAbilitySystemComponent* NLASC, FNLAbi
 
 		FGameplayAbilitySpec AbilitySpec(AbilityCDO, AbilityToGrant.AbilityLevel);
 		AbilitySpec.SourceObject = SourceObject;
-		AbilitySpec.DynamicAbilityTags.AddTag(AbilityToGrant.InputTag);
+		AbilitySpec.GetDynamicSpecSourceTags().AddTag(AbilityToGrant.InputTag);
 
 		const FGameplayAbilitySpecHandle AbilitySpecHandle = NLASC->GiveAbility(AbilitySpec);
 

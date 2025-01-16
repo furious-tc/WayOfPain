@@ -86,6 +86,11 @@ public:
 	virtual FOnNLTeamIndexChangedDelegate* GetOnTeamIndexChangedDelegate() override;
 	//~End of INLTeamAgentInterface interface
 
+public:
+
+	UFUNCTION(BlueprintNativeEvent, meta = (DisplayName = "GetPrimaryAttachmentMesh"))
+	USkeletalMeshComponent* GetPrimaryAttachmentMesh() const;
+
 protected:
 
 	virtual void OnAbilitySystemInitialized();
@@ -100,6 +105,8 @@ protected:
 	virtual void SetupPlayerInputComponent(UInputComponent* PlayerInputComponent) override;
 
 	void InitializeGameplayTags();
+
+	virtual USkeletalMeshComponent* GetPrimaryAttachmentMesh_Implementation() const;
 
 	// Begins the elimination sequence for the character (disables collision, disables movement, etc...)
 	UFUNCTION()

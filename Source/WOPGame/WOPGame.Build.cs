@@ -19,7 +19,7 @@ public class WOPGame : ModuleRules
 			}
 		);
 
-		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "AIModule", "ModularGameplay", "NavigationSystem", "Niagara", "CommonLoadingScreen", "ApplicationCore" });
+		PublicDependencyModuleNames.AddRange(new string[] { "Core", "CoreUObject", "Engine", "InputCore", "EnhancedInput", "AIModule", "ModularGameplay", "NavigationSystem", "Niagara", "CommonLoadingScreen", "ApplicationCore", "AsyncMixin", "PhysicsCore" });
 
 		PrivateDependencyModuleNames.AddRange(new string[] { "NetCore", "Slate", "SlateCore", "UMG", "GameplayAbilities", "GameplayTags", "GameplayTasks", "GameplayMessageRuntime", "AudioModulation", "CommonUI", "CommonInput", "AudioMixer", "DeveloperSettings", "RHI" });
 

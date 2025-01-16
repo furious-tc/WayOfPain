@@ -97,6 +97,10 @@
 		{
 			"Name": "CommonLoadingScreen",
 			"Enabled": true
+		},
+		{
+			"Name": "AsyncMixin",
+			"Enabled": true
 		}
 	]
 }

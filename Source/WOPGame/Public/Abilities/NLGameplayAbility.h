@@ -22,8 +22,6 @@ struct FGameplayAbilityActorInfo;
 struct FGameplayEffectSpec;
 struct FGameplayEventData;
 
-UE_DECLARE_GAMEPLAY_TAG_EXTERN(TAG_INTERACTION_DURATION_MESSAGE);
-
 /**
  * ENLAbilityActivationPolicy
  *
@@ -79,20 +77,6 @@ public:
 
 	UPROPERTY(BlueprintReadWrite)
 	TObjectPtr<UAnimMontage> FailureMontage = nullptr;
-};
-
-/** Broadcast payload message for interaction duration */
-USTRUCT(BlueprintType)
-struct FNLInteractionDurationMessage
-{
-	GENERATED_BODY()
-
-public:
-	UPROPERTY(BlueprintReadWrite)
-	TObjectPtr<AActor> Instigator = nullptr;
-	
-	UPROPERTY(BlueprintReadWrite)
-	float Duration = 0;
 };
 
 /**

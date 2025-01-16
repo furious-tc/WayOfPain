@@ -3,6 +3,7 @@
 #include "Gameplay/NLApplicableGameplayItemInstance.h"
 #include "Gameplay/NLApplicableGameplayItemDefinition.h"
 #include "Components/SkeletalMeshComponent.h"
+#include "Pawns/NLCharacter.h"
 #include "GameFramework/Character.h"
 #include "GameFramework/GameplayMessageSubsystem.h"
 #include "Net/UnrealNetwork.h"
@@ -99,6 +100,11 @@ AActor* UNLApplicableGameplayItemInstance::SpawnApplicableGameplayItemEntry(FNLA
 		if (ACharacter* Char = Cast<ACharacter>(OwningPawn))
 		{
 			AttachTarget = Char->GetMesh();
+		}
+
+		if (ANLCharacter* NLChar = Cast<ANLCharacter>(OwningPawn))
+		{
+			AttachTarget = NLChar->GetPrimaryAttachmentMesh();
 		}
 
         NewActor = GetWorld()->SpawnActorDeferred<AActor>(SpawnInfo.ActorToSpawn, FTransform::Identity, OwningPawn);

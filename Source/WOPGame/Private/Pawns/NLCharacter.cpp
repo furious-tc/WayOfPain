@@ -237,6 +237,11 @@ bool ANLCharacter::HasAnyMatchingGameplayTags(const FGameplayTagContainer& TagCo
 	return false;
 }
 
+USkeletalMeshComponent* ANLCharacter::GetPrimaryAttachmentMesh_Implementation() const
+{
+	return GetMesh();
+}
+
 void ANLCharacter::OnEliminationStarted(AActor*)
 {
 	DisableMovementAndCollision();
