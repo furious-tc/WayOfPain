@@ -220,14 +220,6 @@ void ANLPlayerController::UpdateHiddenComponents(const FVector& ViewLocation, TS
 			TInlineComponentArray<UPrimitiveComponent*> PawnComponents;
 			ViewTargetPawn->GetComponents(PawnComponents);
 			AddToHiddenComponents(PawnComponents);
-
-			//// hide weapon too
-			//if (ViewTargetPawn->CurrentWeapon)
-			//{
-			//	TInlineComponentArray<UPrimitiveComponent*> WeaponComponents;
-			//	ViewTargetPawn->CurrentWeapon->GetComponents(WeaponComponents);
-			//	AddToHiddenComponents(WeaponComponents);
-			//}
 		}
 
 		// we consumed it, reset for next frame

@@ -9,16 +9,18 @@
  **/
 
 // Trace against Actors/Components which provide interactions.
-#define NL_TraceChannel_Interaction					ECC_GameTraceChannel1
+#define NL_TraceChannel_Traversable				ECC_GameTraceChannel1
 
-// Trace used by weapons, will hit physics assets instead of capsules
-#define NL_TraceChannel_Weapon						ECC_GameTraceChannel2
+// Trace used by Hits, will hit physics assets instead of capsules
+#define NL_TraceChannel_Hit						ECC_GameTraceChannel2
 
-// Trace used by by weapons, will hit pawn capsules instead of physics assets
-#define NL_TraceChannel_Weapon_Capsule				ECC_GameTraceChannel3
+// Trace used by by Hits, will hit pawn capsules instead of physics assets
+#define NL_TraceChannel_Hit_Capsule				ECC_GameTraceChannel3
 
-// Trace used by by weapons, will trace through multiple pawns rather than stopping on the first hit
-#define NL_TraceChannel_Weapon_Multi					ECC_GameTraceChannel4
+// Trace used by by Hits, will trace through multiple pawns rather than stopping on the first hit
+#define NL_TraceChannel_Hit_Multi				ECC_GameTraceChannel4
 
-// Allocated to aim assist by the ShooterCore game feature
-// ECC_GameTraceChannel5
+// Trace against Actors/Components which provide interactions.
+#define NL_TraceChannel_Interaction				ECC_GameTraceChannel5
+
+// ECC_GameTraceChannel6

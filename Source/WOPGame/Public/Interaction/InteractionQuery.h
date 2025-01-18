@@ -25,4 +25,8 @@ public:
 	/** A generic UObject to shove in extra data required for the interaction */
 	UPROPERTY(BlueprintReadWrite)
 	TWeakObjectPtr<UObject> OptionalObjectData;
+
+	/** A generic GameplayTag to shove in a key that can be used for switching between interaction options */
+	UPROPERTY(BlueprintReadWrite)
+	FGameplayTag OptionalTag;
 };

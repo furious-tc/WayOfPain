@@ -106,7 +106,7 @@ void UNLUsableGameplayItemInstance::ApplyDeviceProperties()
 				//Params.DeviceId = <some specific device id>;
 				
 				// Don't remove this property it was evaluated. We want the properties to be applied as long as we are holding the 
-				// weapon, and will remove them manually in OnUnapplied
+				// usable gameplay item, and will remove them manually in OnUnapplied
 				Params.bLooping = true;
 			
 				DevicePropertyHandles.Emplace(InputDeviceSubsystem->ActivateDeviceProperty(DeviceProp, Params));

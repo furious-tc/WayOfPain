@@ -35,7 +35,7 @@ public:
 	UFUNCTION(BlueprintCallable)
 	void UpdateFiringTime();
 
-	// Returns how long it's been since the weapon was interacted with (used or applied)
+	// Returns how long it's been since the usable gameplay item was interacted with (used or applied)
 	UFUNCTION(BlueprintPure)
 	float GetTimeSinceLastInteractedWith() const;
 
@@ -62,15 +62,15 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	const FPlatformUserId GetOwningUserId() const;
 
-	/** Callback for when the owning pawn of this weapon dies. Removes all spawned device properties. */
+	/** Callback for when the owning pawn of this usable gameplay item dies. Removes all spawned device properties. */
 	UFUNCTION()
 	void OnEliminationStarted(AActor* OwningActor);
 
 	/**
-	 * Apply the ApplicableDeviceProperties to the owning pawn of this weapon.
+	 * Apply the ApplicableDeviceProperties to the owning pawn of this usable gameplay item.
 	 * Populate the DevicePropertyHandles so that they can be removed later. This will
 	 * Play the device properties in Looping mode so that they will share the lifetime of the
-	 * weapon being Applied.
+	 * usable gameplay item being Applied.
 	 */
 	void ApplyDeviceProperties();
 
@@ -79,7 +79,7 @@ protected:
 
 private:
 
-	/** Set of device properties activated by this weapon. Populated by ApplyDeviceProperties */
+	/** Set of device properties activated by this usable gameplay item. Populated by ApplyDeviceProperties */
 	UPROPERTY(Transient)
 	TSet<FInputDevicePropertyHandle> DevicePropertyHandles;
 
