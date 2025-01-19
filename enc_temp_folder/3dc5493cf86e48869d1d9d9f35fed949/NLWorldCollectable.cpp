@@ -15,14 +15,9 @@ ANLWorldCollectable::ANLWorldCollectable()
 
 void ANLWorldCollectable::GatherInteractionOptions(const FInteractionQuery& InteractQuery, FInteractionOptionBuilder& InteractionBuilder)
 {
-	if (const FInteractionOption* TaggedOption = TaggedOptions.Find(InteractQuery.OptionalTag))
-	{
-		InteractionBuilder.AddInteractionOption(*TaggedOption);
-	}
-	else
-	{
-		InteractionBuilder.AddInteractionOption(DefaultOption);
-	}
+	const FInteractionOption* TaggedOption = TaggedOptions.Find(InteractQuery.OptionalTag);
+	
+	InteractionBuilder.AddInteractionOption(TaggedOption ? *TaggedOption : DefaultOption);
 }
 
 FGameplayItemPickup ANLWorldCollectable::GetPickupGameplayItem() const

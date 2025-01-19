@@ -71,7 +71,7 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NL|GameplayItemPickup")
 	TObjectPtr<UStaticMeshComponent> PadMesh;
 
-	UPROPERTY(BlueprintReadOnly, Category = "NL|GameplayItemPickup")
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "NL|GameplayItemPickup")
 	TObjectPtr<UStaticMeshComponent> GameplayItemMesh;
 
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "NL|GameplayItemPickup")
