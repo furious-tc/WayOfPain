@@ -16,6 +16,7 @@
 #include "Settings/NLSettingsShared.h"
 #include "AbilitySystemGlobals.h"
 #include "CommonInputSubsystem.h"
+#include "CommonLocalPlayer.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(NLPlayerController)
 
@@ -66,6 +67,26 @@ void ANLPlayerController::GetLifetimeReplicatedProps(TArray<FLifetimeProperty>& 
 void ANLPlayerController::ReceivedPlayer()
 {
 	Super::ReceivedPlayer();
+
+	if (UCommonLocalPlayer* LocalPlayer = Cast<UCommonLocalPlayer>(Player))
+	{
+		LocalPlayer->OnPlayerControllerSet.Broadcast(LocalPlayer, this);
+
+		if (PlayerState)
+		{
+			LocalPlayer->OnPlayerStateSet.Broadcast(LocalPlayer, PlayerState);
+		}
+	}
+}
+
+void ANLPlayerController::SetPawn(APawn* InPawn)
+{
+	Super::SetPawn(InPawn);
+
+	if (UCommonLocalPlayer* LocalPlayer = Cast<UCommonLocalPlayer>(Player))
+	{
+		LocalPlayer->OnPlayerPawnSet.Broadcast(LocalPlayer, InPawn);
+	}
 }
 
 void ANLPlayerController::PlayerTick(float DeltaTime)
@@ -303,6 +324,11 @@ void ANLPlayerController::OnSettingsChanged(UNLSettingsShared* InSettings)
 void ANLPlayerController::OnPossess(APawn* InPawn)
 {
 	Super::OnPossess(InPawn);
+
+	if (UCommonLocalPlayer* LocalPlayer = Cast<UCommonLocalPlayer>(Player))
+	{
+		LocalPlayer->OnPlayerPawnSet.Broadcast(LocalPlayer, InPawn);
+	}
 }
 
 void ANLPlayerController::OnUnPossess()
@@ -320,4 +346,9 @@ void ANLPlayerController::OnUnPossess()
 	}
 
 	Super::OnUnPossess();
+
+	if (UCommonLocalPlayer* LocalPlayer = Cast<UCommonLocalPlayer>(Player))
+	{
+		LocalPlayer->OnPlayerPawnSet.Broadcast(LocalPlayer, nullptr);
+	}
 }

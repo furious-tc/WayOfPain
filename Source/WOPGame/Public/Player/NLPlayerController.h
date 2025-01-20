@@ -62,6 +62,7 @@ public:
 
 	//~APlayerController interface
 	virtual void ReceivedPlayer() override;
+	virtual void SetPawn(APawn* InPawn) override;
 	virtual void PlayerTick(float DeltaTime) override;
 	virtual void SetPlayer(UPlayer* InPlayer) override;
 	virtual void UpdateForceFeedback(IInputInterface* InputInterface, const int32 ControllerId) override;

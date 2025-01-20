@@ -101,6 +101,14 @@
 		{
 			"Name": "AsyncMixin",
 			"Enabled": true
+		},
+		{
+			"Name": "CommonGame",
+			"Enabled": true
+		},
+		{
+			"Name": "UIExtension",
+			"Enabled": true
 		}
 	]
 }

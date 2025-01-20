@@ -4,6 +4,7 @@
 
 #include "Engine/LocalPlayer.h"
 #include "Teams/NLTeamAgentInterface.h"
+#include "CommonLocalPlayer.h"
 #include "NLLocalPlayer.generated.h"
 
 struct FGenericTeamId;
@@ -21,7 +22,7 @@ struct FSwapAudioOutputResult;
  * UNLLocalPlayer
  */
 UCLASS()
-class WOPGAME_API UNLLocalPlayer : public ULocalPlayer, public INLTeamAgentInterface
+class WOPGAME_API UNLLocalPlayer : public UCommonLocalPlayer, public INLTeamAgentInterface
 {
 	GENERATED_BODY()
 

@@ -3,9 +3,42 @@
 #pragma once
 
 #include "GameFramework/HUD.h"
+#include "CommonActivatableWidget.h"
+#include "UIExtensionSystem.h"
 #include "NLHUD.generated.h"
 
 namespace EEndPlayReason { enum Type : int; }
+
+struct FComponentRequestHandle;
+
+USTRUCT()
+struct FNLHUDLayoutRequest
+{
+	GENERATED_BODY()
+
+	// The layout widget to spawn
+	UPROPERTY(EditAnywhere, Category = UI, meta = (AssetBundles = "Client"))
+	TSoftClassPtr<UCommonActivatableWidget> LayoutClass;
+
+	// The layer to insert the widget in
+	UPROPERTY(EditAnywhere, Category = UI, meta = (Categories = "UI.Layer"))
+	FGameplayTag LayerID;
+};
+
+
+USTRUCT()
+struct FNLHUDElementEntry
+{
+	GENERATED_BODY()
+
+	// The widget to spawn
+	UPROPERTY(EditAnywhere, Category = UI, meta = (AssetBundles = "Client"))
+	TSoftClassPtr<UUserWidget> WidgetClass;
+
+	// The slot ID where we should place this widget
+	UPROPERTY(EditAnywhere, Category = UI)
+	FGameplayTag SlotID;
+};
 
 /**
  * ANLHUD
@@ -37,4 +70,22 @@ protected:
 	//~AHUD interface
 	virtual void GetDebugActorList(TArray<AActor*>& InOutList) override;
 	//~End of AHUD interface
+
+
+private:
+	// Layout to add to the HUD
+	UPROPERTY(EditAnywhere, Category = UI, meta = (TitleProperty = "{LayerID} -> {LayoutClass}"))
+	TArray<FNLHUDLayoutRequest> Layout;
+
+	// Widgets to add to the HUD
+	UPROPERTY(EditAnywhere, Category = UI, meta = (TitleProperty = "{SlotID} -> {WidgetClass}"))
+	TArray<FNLHUDElementEntry> Widgets;
+
+private:
+
+	TArray<TWeakObjectPtr<UCommonActivatableWidget>> LayoutsAdded;
+	TArray<FUIExtensionHandle> ExtensionHandles;
+
+	void AddWidgets();
+	void RemoveWidgets();
 };

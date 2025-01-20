@@ -4,7 +4,7 @@
 #include "AbilitySystemComponent.h"
 #include "AbilitySystemGlobals.h"
 #include "Async/TaskGraphInterfaces.h"
-#include "Components/GameFrameworkComponentManager.h"
+#include "CommonUIExtensions.h"
 #include "UObject/UObjectIterator.h"
 
 #include UE_INLINE_GENERATED_CPP_BY_NAME(NLHUD)
@@ -24,19 +24,18 @@ void ANLHUD::PreInitializeComponents()
 {
 	Super::PreInitializeComponents();
 
-	UGameFrameworkComponentManager::AddGameFrameworkComponentReceiver(this);
 }
 
 void ANLHUD::BeginPlay()
 {
-	UGameFrameworkComponentManager::SendGameFrameworkComponentExtensionEvent(this, UGameFrameworkComponentManager::NAME_GameActorReady);
-
 	Super::BeginPlay();
+
+	AddWidgets();
 }
 
 void ANLHUD::EndPlay(const EEndPlayReason::Type EndPlayReason)
 {
-	UGameFrameworkComponentManager::RemoveGameFrameworkComponentReceiver(this);
+	RemoveWidgets();
 
 	Super::EndPlay(EndPlayReason);
 }
@@ -70,3 +69,44 @@ void ANLHUD::GetDebugActorList(TArray<AActor*>& InOutList)
 	}
 }
 
+void ANLHUD::AddWidgets()
+{
+	if (!GetOwningPlayerController())
+	{
+		return;
+	}
+
+	if (ULocalPlayer* LocalPlayer = Cast<ULocalPlayer>(GetOwningPlayerController()->Player))
+	{
+		for (const FNLHUDLayoutRequest& Entry : Layout)
+		{
+			if (TSubclassOf<UCommonActivatableWidget> ConcreteWidgetClass = Entry.LayoutClass.Get())
+			{
+				LayoutsAdded.Add(UCommonUIExtensions::PushContentToLayer_ForPlayer(LocalPlayer, Entry.LayerID, ConcreteWidgetClass));
+			}
+		}
+
+		UUIExtensionSubsystem* ExtensionSubsystem = GetWorld()->GetSubsystem<UUIExtensionSubsystem>();
+		for (const FNLHUDElementEntry& Entry : Widgets)
+		{
+			ExtensionHandles.Add(ExtensionSubsystem->RegisterExtensionAsWidgetForContext(Entry.SlotID, LocalPlayer, Entry.WidgetClass.Get(), -1));
+		}
+	}
+}
+
+void ANLHUD::RemoveWidgets()
+{
+	// Only unregister if this is the same HUD actor that was registered, there can be multiple active at once on the client
+	for (TWeakObjectPtr<UCommonActivatableWidget>& AddedLayout : LayoutsAdded)
+	{
+		if (AddedLayout.IsValid())
+		{
+			AddedLayout->DeactivateWidget();
+		}
+	}
+
+	for (FUIExtensionHandle& Handle : ExtensionHandles)
+	{
+		Handle.Unregister();
+	}
+}
